@@ -1,8 +1,30 @@
 import React from "react";
 import { Box, Container } from "@chakra-ui/react";
-import { Main } from "./screens/Main";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "./screens/Login";
 import { Register } from "./screens/Register";
+import { Main } from "./screens/Main";
+import { Home } from "./screens/Home";
+import { Userbar } from "./components/Userbar";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
+  },
+]);
 
 function App() {
   return (
@@ -14,8 +36,14 @@ function App() {
       fontWeight="200"
       paddingTop={110}
     >
-      <Container maxW="251px">
-        <Register />
+      <Container
+        h="100%"
+        maxW="313px"
+        p={0}
+        overflowY="scroll"
+        position="relative"
+      >
+        <RouterProvider router={router} />
       </Container>
     </Box>
   );
