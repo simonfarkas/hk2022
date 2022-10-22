@@ -1,5 +1,13 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { Flex, Button, FormControl, Input, Box, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Button,
+  FormControl,
+  Input,
+  Box,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 import logo from "../assets/logo.svg";
 import "@fontsource/lato/latin-ext.css";
 import { BiArrowBack, BiLogIn } from "react-icons/bi";
@@ -29,7 +37,7 @@ export const Login = () => {
       <Box cursor="pointer">
         <BiArrowBack color="white" size={24} onClick={() => navigate("/")} />
       </Box>
-      <img src={logo} width={212} height={50} alt="logo" />
+      <Image mx="auto" src={logo} width={212} height={50} alt="logo" />
       <form onSubmit={handleSubmit}>
         <Flex direction="column" experimental_spaceY={5}>
           <FormControl>

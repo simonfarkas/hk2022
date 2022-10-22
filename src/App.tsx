@@ -5,6 +5,7 @@ import { Login } from "./screens/Login";
 import { Register } from "./screens/Register";
 import { Main } from "./screens/Main";
 import { Home } from "./screens/Home";
+import { Calendar } from "./screens/Calendar";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Home />,
   },
+  {
+    path: "/calendar",
+    element: <Calendar />,
+  },
 ]);
 
 function App() {
@@ -30,10 +35,11 @@ function App() {
     <Box
       bg="main"
       maxW="375px"
-      minH="667px"
+      minH="100vh"
       mx="auto"
       fontWeight="200"
-      paddingTop={110}
+      pt={10}
+      pb={20}
     >
       <Container h="100%" maxW="313px" p={0} position="relative">
         <RouterProvider router={router} />

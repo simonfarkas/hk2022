@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Userbar } from "../components/Userbar";
 import {
   Box,
@@ -6,6 +6,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Image,
   Input,
   Text,
 } from "@chakra-ui/react";
@@ -16,51 +17,18 @@ import { format } from "date-fns";
 import sk from "date-fns/locale/sk";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { initArray } from "../initArray";
-import { BiLogIn } from "react-icons/bi";
+import { initArray } from "../types/initArray";
+import { customStyles } from "../types/modal.styles";
+import logo from "../assets/logo.svg";
 
 Modal.setAppElement("#root");
-
-const customStyles = {
-  content: {
-    width: "313px",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "10px",
-  },
-  overlay: {
-    background: "rgba(0,0,0,0.75)",
-  },
-};
 
 export const Home = () => {
   const [reminders, setReminders] = useState<any[]>(initArray);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [inputName, setInputName] = useState("");
-  const [inputDate, setInputDate] = useState<Date | string>();
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newReminder = {
-      id: new Date().getTime(),
-      name: inputName,
-      date: format(inputDate as string, "dd.MM.yyyy"),
-      author: {
-        id: 1,
-        name: "Simon Farkas",
-        profile_pic: "https://htmlcolors.com/color-image/000.png",
-      },
-    };
-    setReminders([...reminders, newReminder]);
-    setIsFormOpen(false);
-  };
-
-  const sortedReminders = [...reminders].sort((a, b) => b.id - a.id);
+  const [inputDate, setInputDate] = useState<Date>();
 
   const handleDelete = (id: number) => {
     const newArray = reminders.filter((reminder) => reminder.id !== id);
@@ -74,6 +42,37 @@ export const Home = () => {
     setReminders(newArray);
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newReminder = {
+      id: new Date().getTime(),
+      name: inputName,
+      date: inputDate,
+      isDone: false,
+      isShared: false,
+      sharedWith: [
+        {
+          id: 2,
+          name: "John Smith",
+          profile_pic: "https://htmlcolors.com/color-image/ffffff.png",
+          isSharing: false,
+        },
+      ],
+      author: {
+        id: 1,
+        name: "Simon Farkas",
+        profile_pic: "https://htmlcolors.com/color-image/000.png",
+      },
+    };
+    setReminders([...reminders, newReminder]);
+    setIsFormOpen(false);
+    setInputName("");
+    setInputDate(undefined);
+    console.log(newReminder);
+  };
+
+  const sortedReminders = [...reminders].sort((a, b) => b.id - a.id);
+
   let footer = <Text>Vyberte deň</Text>;
 
   if (inputDate) {
@@ -82,6 +81,7 @@ export const Home = () => {
 
   return (
     <Flex direction="column">
+      <Image my={10} mx="auto" src={logo} width={212} height={50} alt="logo" />
       <Modal
         isOpen={isFormOpen}
         onAfterOpen={() => setIsFormOpen(true)}
@@ -129,19 +129,15 @@ export const Home = () => {
           </Button>
         </form>
       </Modal>
-      {activeTab === 0 &&
-        sortedReminders.map((reminder) => (
-          <Reminder
-            key={reminder.id}
-            id={reminder.id}
-            name={reminder.name}
-            date={reminder.date}
-            author={reminder.author}
-            isDone={reminder.isDone}
-            deleteReminder={() => handleDelete(reminder.id)}
-            markDone={() => handleMarkDone(reminder.id)}
-          />
-        ))}
+
+      {sortedReminders.map((reminder) => (
+        <Reminder
+          key={reminder.id}
+          reminder={reminder}
+          deleteReminder={() => handleDelete(reminder.id)}
+          markDone={() => handleMarkDone(reminder.id)}
+        />
+      ))}
       <Box mb={32}>
         <Box
           bg="white"

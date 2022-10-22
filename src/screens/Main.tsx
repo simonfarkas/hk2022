@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Image } from "@chakra-ui/react";
 import logo from "../assets/logo.svg";
 import "@fontsource/lato/latin-ext.css";
 import { BiLogIn, BiUserPlus } from "react-icons/bi";
@@ -9,7 +9,7 @@ export const Main = () => {
   const navigate = useNavigate();
   return (
     <Flex direction="column" experimental_spaceY={5}>
-      <img src={logo} width={212} height={50} alt="logo" />
+      <Image mx="auto" src={logo} width={212} height={50} alt="logo" />
       <Button
         bg="secondary"
         color="white"

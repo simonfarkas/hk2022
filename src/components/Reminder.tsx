@@ -1,56 +1,106 @@
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
-import { BsCalendar } from "react-icons/bs";
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Image,
+  Text,
+} from "@chakra-ui/react";
+import { BsCalendar, BsPlus, BsThreeDotsVertical } from "react-icons/bs";
 import { BiTrash } from "react-icons/bi";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-modal";
+import { AiOutlineMinus } from "react-icons/ai";
+import { customStyles } from "../types/modal.styles";
+import { Props } from "../interfaces/IReminder";
+import { IAuthor } from "../interfaces/IAuthor";
 
-interface Author {
-  name: string;
-  profile_pic: string;
-}
+export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
+  const [isShareModal, setIsShareModal] = useState(false);
 
-interface Reminder {
-  id: number;
-  name: string;
-  date: string;
-  isDone: boolean;
-  author: Author;
-  deleteReminder: (id: number) => void;
-  markDone: (id: number) => void;
-}
-
-export const Reminder = ({
-  id,
-  name,
-  date,
-  isDone,
-  author,
-  deleteReminder,
-  markDone,
-}: Reminder) => {
   return (
     <Box bg="secondary" color="white" p={4} my={1} borderRadius="lg">
+      <Modal
+        isOpen={isShareModal}
+        onAfterOpen={() => setIsShareModal(true)}
+        onRequestClose={() => setIsShareModal(false)}
+        style={customStyles}
+      >
+        <form>
+          <FormControl marginBottom={5}>
+            <FormLabel>Zdieľať s:</FormLabel>
+          </FormControl>
+          <Box bg="secondary" color="white" p={4} my={1} borderRadius="lg">
+            {reminder.sharedWith.map((user: IAuthor) => (
+              <Flex
+                direction="row"
+                align="center"
+                justify="space-between"
+                key={user.id}
+              >
+                <Flex align="center">
+                  <Image
+                    src={user.profile_pic}
+                    width={8}
+                    height={8}
+                    alt="profile_pic"
+                    borderRadius="50%"
+                  />
+                  <Text ml={2}>{user.name}</Text>
+                </Flex>
+                {user.isSharing ? (
+                  <AiOutlineMinus size={24} />
+                ) : (
+                  <BsPlus size={24} />
+                )}
+              </Flex>
+            ))}
+          </Box>
+        </form>
+      </Modal>
       <Flex direction="column">
-        <Text textDecoration={isDone ? "line-through" : "none"}>{name}</Text>
+        <Flex direction="row" align="center" justify="space-between">
+          <Text
+            maxW="md"
+            textDecoration={reminder.isDone ? "line-through" : "none"}
+          >
+            {reminder.name}
+          </Text>
+          <Text fontSize={12}>
+            {reminder.author.name === "John Smith" && reminder.isShared
+              ? "Zdieľané"
+              : ""}
+            {reminder.author.name === "Simon Farkas" && (
+              <BsThreeDotsVertical
+                color="white"
+                size="12"
+                onClick={() => setIsShareModal(true)}
+              />
+            )}
+          </Text>
+        </Flex>
+
         <Flex direction="row" align="center">
           <Image
-            src={author.profile_pic}
+            src={reminder.author.profile_pic}
             width={4}
             height={4}
             alt="profile_pic"
             borderRadius="lg"
           />
           <Text ml={2} fontSize={10}>
-            {author.name}
+            {reminder.author.name}
           </Text>
         </Flex>
         <Flex direction="row" align="center" justify="space-between" mt={4}>
           <Flex direction="row" align="center">
             <BsCalendar />
-            <Text ml={2}>{date}</Text>
+            <Text ml={2}>{reminder.date.toLocaleDateString()}</Text>
           </Flex>
           <Flex direction="row" align="center" experimental_spaceX={2}>
-            <BiTrash onClick={() => deleteReminder(id)} />
-            {!isDone && (
+            <BiTrash onClick={() => deleteReminder(reminder.id)} />
+            {!reminder.isDone && (
               <Button
                 bg="white"
                 color="black"
@@ -61,7 +111,7 @@ export const Reminder = ({
                 px={4}
                 py={1}
                 rounded="2xl"
-                onClick={() => markDone(id)}
+                onClick={() => markDone(reminder.id)}
               >
                 Hotovo
               </Button>

@@ -2,6 +2,7 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 import { BiHome, BiUser } from "react-icons/bi";
 import { BsCalendarEvent } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const ActiveTabStyles = {
   bg: "white",
@@ -18,6 +19,16 @@ interface Props {
 }
 
 export const Userbar = ({ activeTab, setActiveTab }: Props) => {
+  const navigate = useNavigate();
+  const handleNavigate = (i: number) => {
+    setActiveTab(i);
+    if (i === 0) {
+      navigate("/home");
+    }
+    if (i === 1) {
+      navigate("/calendar");
+    }
+  };
   return (
     <Flex
       direction="row"
@@ -37,7 +48,7 @@ export const Userbar = ({ activeTab, setActiveTab }: Props) => {
         borderLeftRadius="lg"
         w="100%"
         {...(activeTab === 0 ? ActiveTabStyles : InactiveTabStyles)}
-        onClick={() => setActiveTab(0)}
+        onClick={() => handleNavigate(0)}
       >
         <BiHome size="24" />
       </Flex>
@@ -48,7 +59,7 @@ export const Userbar = ({ activeTab, setActiveTab }: Props) => {
         px={4}
         w="100%"
         {...(activeTab === 1 ? ActiveTabStyles : InactiveTabStyles)}
-        onClick={() => setActiveTab(1)}
+        onClick={() => handleNavigate(1)}
       >
         <BsCalendarEvent size="24" />
       </Flex>
