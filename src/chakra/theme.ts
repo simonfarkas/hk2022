@@ -8,7 +8,7 @@ const colors = {
 };
 
 const fonts = {
-  body: `'Lato', sans-serif`,
+  body: `'Lato-latin-ext', sans-serif`,
 };
 
 export const theme = extendTheme({ colors, fonts });

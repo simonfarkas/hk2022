@@ -104,7 +104,11 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
             </Text>
           </Flex>
           <Flex direction="row" align="center" experimental_spaceX={2}>
-            <BiTrash onClick={() => deleteReminder(reminder.id)} />
+            <BiTrash
+              onClick={() => deleteReminder(reminder.id)}
+              color="tomato"
+              size={18}
+            />
             {!reminder.isDone && (
               <Button
                 bg="white"

@@ -28,6 +28,9 @@ export const Userbar = ({ activeTab, setActiveTab }: Props) => {
     if (i === 1) {
       navigate("/calendar");
     }
+    if (i === 2) {
+      navigate("/my-profile");
+    }
   };
   return (
     <Flex
@@ -71,7 +74,7 @@ export const Userbar = ({ activeTab, setActiveTab }: Props) => {
         borderRightRadius="lg"
         w="100%"
         {...(activeTab === 2 ? ActiveTabStyles : InactiveTabStyles)}
-        onClick={() => setActiveTab(2)}
+        onClick={() => handleNavigate(2)}
       >
         <BiUser size="24" />
       </Flex>
