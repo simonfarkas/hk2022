@@ -22,11 +22,20 @@ import logo from "../assets/logo.svg";
 Modal.setAppElement("#root");
 
 export const Home = () => {
-  const [reminders, setReminders] = useState<any[]>(initArray);
+  const [reminders, setReminders] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [inputName, setInputName] = useState("");
   const [inputDate, setInputDate] = useState<Date>();
+
+  useEffect(() => {
+    const getReminders = localStorage.getItem("reminders");
+    if (getReminders) setReminders(JSON.parse(getReminders));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("reminders", JSON.stringify(reminders));
+  }, [reminders]);
 
   const handleDelete = (id: number) => {
     const newArray = reminders.filter((reminder) => reminder.id !== id);
@@ -42,30 +51,32 @@ export const Home = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newReminder = {
-      id: new Date().getTime(),
-      name: inputName,
-      date: inputDate,
-      isDone: false,
-      isShared: false,
-      sharedWith: [
-        {
-          id: 2,
-          name: "John Smith",
-          profile_pic: "https://htmlcolors.com/color-image/ffffff.png",
-          isSharing: false,
+    if (inputName && inputDate)) {
+      const newReminder = {
+        id: new Date().getTime(),
+        name: inputName,
+        date: inputDate?.setHours(0, 0, 0, 0),
+        isDone: false,
+        isShared: false,
+        sharedWith: [
+          {
+            id: 2,
+            name: "John Smith",
+            profile_pic: "https://htmlcolors.com/color-image/ffffff.png",
+            isSharing: false,
+          },
+        ],
+        author: {
+          id: 1,
+          name: "Simon Farkas",
+          profile_pic: "https://htmlcolors.com/color-image/000.png",
         },
-      ],
-      author: {
-        id: 1,
-        name: "Simon Farkas",
-        profile_pic: "https://htmlcolors.com/color-image/000.png",
-      },
-    };
-    setReminders([...reminders, newReminder]);
-    setIsFormOpen(false);
-    setInputName("");
-    setInputDate(undefined);
+      };
+      setReminders([...reminders, newReminder]);
+      setIsFormOpen(false);
+      setInputName("");
+      setInputDate(undefined);
+    }
   };
 
   const sortedReminders = [...reminders].sort((a, b) => b.id - a.id);
@@ -89,7 +100,6 @@ export const Home = () => {
           <FormControl marginBottom={5}>
             <FormLabel>Nazov</FormLabel>
             <Input
-              placeholder="test"
               required
               variant="flushed"
               value={inputName}

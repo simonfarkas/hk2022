@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Image } from "@chakra-ui/react";
 import { DayPicker } from "react-day-picker";
 import sk from "date-fns/locale/sk";
 import logo from "../assets/logo.svg";
 import { Reminder, Userbar } from "../components";
 import { calendarStyles, initArray } from "../types";
+import { useTime } from "../hooks";
 
 export const Calendar = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [reminders, setReminders] = useState(initArray);
   const [date, setDate] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const getReminders = localStorage.getItem("reminders");
+    if (getReminders) setReminders(JSON.parse(getReminders));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("reminders", JSON.stringify(reminders));
+  }, [reminders]);
 
   date.setHours(0, 0, 0, 0);
 
@@ -45,10 +55,7 @@ export const Calendar = () => {
           }}
         />
         {sortedReminders
-          .filter(
-            (reminder) =>
-              reminder.date.toLocaleDateString() === date.toLocaleDateString()
-          )
+          .filter((reminder) => useTime(reminder.date) === useTime(date))
           .map((reminder) => (
             <Reminder
               key={reminder.id}

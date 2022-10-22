@@ -14,6 +14,7 @@ import { BiTrashAlt } from "react-icons/bi";
 import { AiOutlineMinus } from "react-icons/ai";
 import { modalStyles } from "../types";
 import { Props, IAuthor } from "../interfaces";
+import { useTime } from "../hooks";
 
 export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
   const [isShareModal, setIsShareModal] = useState(false);
@@ -95,12 +96,7 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
         <Flex direction="row" align="center" justify="space-between" mt={4}>
           <Flex direction="row" align="center">
             <BsCalendarEvent />
-            <Text ml={2}>
-              {
-                //@ts-ignore
-                reminder.date.toLocaleDateString()
-              }
-            </Text>
+            <Text ml={2}>{useTime(reminder.date)}</Text>
           </Flex>
           <Flex direction="row" align="center" experimental_spaceX={2}>
             <BiTrashAlt
