@@ -16,7 +16,7 @@ import sk from "date-fns/locale/sk";
 import { DayPicker } from "react-day-picker";
 import { format } from "date-fns";
 import { Reminder, Userbar } from "../components";
-import { initArray, modalStyles } from "../types";
+import { calendarStyles, initArray, modalStyles } from "../types";
 import logo from "../assets/logo.svg";
 
 Modal.setAppElement("#root");
@@ -98,11 +98,16 @@ export const Home = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Datum</FormLabel>
+            <style>{calendarStyles}</style>
             <DayPicker
               mode="single"
               selected={inputDate}
               onSelect={setInputDate}
               footer={footer}
+              modifiersClassNames={{
+                selected: "my-selected",
+                today: "my-today",
+              }}
               locale={sk}
             />
           </FormControl>
