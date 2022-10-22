@@ -8,8 +8,8 @@ import { Userbar } from "../components/Userbar";
 import logo from "../assets/logo.svg";
 
 export const Calendar = () => {
-  const [reminders, setReminders] = useState(initArray);
   const [activeTab, setActiveTab] = useState(1);
+  const [reminders, setReminders] = useState(initArray);
   const [date, setDate] = useState<Date>(new Date());
 
   const handleDelete = (id: number) => {

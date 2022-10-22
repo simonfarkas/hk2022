@@ -6,6 +6,7 @@ import { Register } from "./screens/Register";
 import { Main } from "./screens/Main";
 import { Home } from "./screens/Home";
 import { Calendar } from "./screens/Calendar";
+import { Profile } from "./screens/Profile";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/calendar",
     element: <Calendar />,
+  },
+  {
+    path: "/my-profile",
+    element: <Profile />,
   },
 ]);
 
