@@ -36,13 +36,7 @@ function App() {
       fontWeight="200"
       paddingTop={110}
     >
-      <Container
-        h="100%"
-        maxW="313px"
-        p={0}
-        overflowY="scroll"
-        position="relative"
-      >
+      <Container h="100%" maxW="313px" p={0} position="relative">
         <RouterProvider router={router} />
       </Container>
     </Box>
