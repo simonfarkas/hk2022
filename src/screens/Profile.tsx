@@ -3,7 +3,6 @@ import { Flex, Image, Text, Box, Input } from "@chakra-ui/react";
 import { BiLogOut, BiTrashAlt } from "react-icons/bi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
-import { BiTrash } from "react-icons/bi";
 import { Userbar } from "../components";
 import { requestSharing, sharingWith } from "../types";
 import logo from "../assets/logo.svg";
@@ -113,7 +112,7 @@ export const Profile = () => {
                 <Text ml={2}>{user.name}</Text>
               </Flex>
               <Flex direction="row" align="center" experimental_spaceX={4}>
-                <BiTrash
+                <BiTrashAlt
                   size={24}
                   color="tomato"
                   onClick={() => handleDelete(user.id, "sharing")}

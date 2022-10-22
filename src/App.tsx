@@ -37,15 +37,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Box
-      bg="main"
-      maxW="375px"
-      minH="100vh"
-      mx="auto"
-      fontWeight="200"
-      pt={10}
-      pb={20}
-    >
+    <Box bg="main" maxW="375px" minH="100vh" mx="auto" pt={10} pb={20}>
       <Container
         h="100%"
         maxW="313px"

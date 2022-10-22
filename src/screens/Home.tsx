@@ -98,7 +98,7 @@ export const Home = () => {
       >
         <form onSubmit={handleSubmit}>
           <FormControl marginBottom={5}>
-            <FormLabel>Nazov</FormLabel>
+            <FormLabel>Názov</FormLabel>
             <Input
               required
               variant="flushed"
@@ -107,7 +107,7 @@ export const Home = () => {
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Datum</FormLabel>
+            <FormLabel>Dátum</FormLabel>
             <style>{calendarStyles}</style>
             <DayPicker
               mode="single"

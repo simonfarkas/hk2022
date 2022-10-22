@@ -55,6 +55,7 @@ export const Calendar = () => {
           }}
         />
         {sortedReminders
+          //@ts-ignore
           .filter((reminder) => useTime(reminder.date) === useTime(date))
           .map((reminder) => (
             <Reminder
