@@ -71,9 +71,8 @@ export const Login = () => {
           </FormControl>
           <Text color="white">{error}</Text>
           <Button
-            bg="purpleMain"
-            color="white"
-            colorScheme="none"
+            bg="tomato"
+            colorScheme="tomato"
             experimental_spaceX={2}
             type="submit"
           >

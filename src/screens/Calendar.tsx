@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Box, Image, Flex } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { DayPicker } from "react-day-picker";
 import sk from "date-fns/locale/sk";
 import { initArray } from "../types/initArray";
 import { Reminder } from "../components/Reminder";
 import { Userbar } from "../components/Userbar";
 import logo from "../assets/logo.svg";
+import { css } from "../types/calendar.styles";
 
 export const Calendar = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -32,12 +33,17 @@ export const Calendar = () => {
     <Box h="100%">
       <Image my={10} mx="auto" src={logo} width={212} height={50} alt="logo" />
       <Box bg="secondary" color="white" p={4} my={1} borderRadius="lg">
+        <style>{css}</style>
         <DayPicker
           mode="single"
           selected={date}
           //@ts-ignore
           onSelect={setDate}
           locale={sk}
+          modifiersClassNames={{
+            selected: "my-selected",
+            today: "my-today",
+          }}
         />
         {sortedReminders
           .filter(

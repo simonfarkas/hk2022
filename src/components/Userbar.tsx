@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const ActiveTabStyles = {
   bg: "white",
-  color: "black",
+  color: "secondary",
 };
 
 const InactiveTabStyles = {
@@ -37,7 +37,7 @@ export const Userbar = ({ activeTab, setActiveTab }: Props) => {
       direction="row"
       align="center"
       justify="space-between"
-      bg="purpleMain"
+      bg="tomato"
       borderRadius="lg"
       bottom={4}
       width="313px"

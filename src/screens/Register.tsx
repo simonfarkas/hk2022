@@ -72,9 +72,8 @@ export const Register = () => {
             />
           </FormControl>
           <Button
-            bg="purpleMain"
-            color="white"
-            colorScheme="none"
+            bg="tomato"
+            colorScheme="tomato"
             experimental_spaceX={2}
             onClick={() => navigate("/home")}
           >
