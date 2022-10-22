@@ -46,7 +46,13 @@ function App() {
       pt={10}
       pb={20}
     >
-      <Container h="100%" maxW="313px" p={0} position="relative">
+      <Container
+        h="100%"
+        maxW="313px"
+        p={0}
+        position="relative"
+        overflowX="hidden"
+      >
         <RouterProvider router={router} />
       </Container>
     </Box>

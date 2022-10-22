@@ -84,12 +84,12 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
         <Flex direction="row" align="center">
           <Image
             src={reminder.author.profile_pic}
-            width={4}
-            height={4}
+            width={5}
+            height={5}
             alt="profile_pic"
             borderRadius="lg"
           />
-          <Text ml={2} fontSize={10}>
+          <Text ml={2} fontSize={14}>
             {reminder.author.name}
           </Text>
         </Flex>

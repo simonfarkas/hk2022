@@ -13,6 +13,8 @@ export const Calendar = () => {
   const [reminders, setReminders] = useState(initArray);
   const [date, setDate] = useState<Date>(new Date());
 
+  date.setHours(0, 0, 0, 0);
+
   const handleDelete = (id: number) => {
     const newArray = reminders.filter((reminder) => reminder.id !== id);
     setReminders(newArray);
@@ -25,8 +27,6 @@ export const Calendar = () => {
     setReminders(newArray);
   };
 
-  date.setHours(0, 0, 0, 0);
-
   const sortedReminders = [...reminders].sort((a, b) => b.id - a.id);
 
   return (
@@ -36,6 +36,7 @@ export const Calendar = () => {
         <style>{css}</style>
         <DayPicker
           mode="single"
+          required
           selected={date}
           //@ts-ignore
           onSelect={setDate}

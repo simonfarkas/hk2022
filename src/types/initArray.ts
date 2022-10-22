@@ -2,12 +2,12 @@ const newDate = new Date();
 
 newDate.setHours(0, 0, 0, 0);
 
-console.log(newDate);
+console.log("db:" + newDate);
 
 export const initArray = [
   {
     id: 1,
-    name: "water the plants",
+    name: "Lorem Ipsum",
     date: newDate,
     isDone: false,
     isShared: false,
@@ -27,7 +27,7 @@ export const initArray = [
   },
   {
     id: 2,
-    name: "2",
+    name: "Friday release",
     date: newDate,
     isDone: false,
     isShared: true,
@@ -47,7 +47,7 @@ export const initArray = [
   },
   {
     id: 3,
-    name: "3",
+    name: "Lorem Ipsum",
     date: newDate,
     isDone: false,
     isShared: false,
@@ -67,7 +67,7 @@ export const initArray = [
   },
   {
     id: 4,
-    name: "4",
+    name: "Lorem Ipsum",
     date: newDate,
     isDone: false,
     isShared: false,
@@ -87,9 +87,8 @@ export const initArray = [
   },
   {
     id: 5,
-    name: "5",
+    name: "Lorem Ipsum",
     date: new Date("2022-12-23T22:00:00.000Z"),
-
     isDone: false,
     isShared: true,
     sharedWith: [
@@ -108,7 +107,7 @@ export const initArray = [
   },
   {
     id: 6,
-    name: "lorem ipsum lorem ipsum",
+    name: "Friday release",
     date: new Date("2022-10-12T22:00:00.000Z"),
     isDone: false,
     isShared: true,
@@ -127,8 +126,8 @@ export const initArray = [
     },
   },
   {
-    id: 1666440344785,
-    name: "asdasd",
+    id: 7,
+    name: "Povysavat",
     date: new Date("2022-10-29T22:00:00.000Z"),
     isDone: false,
     isShared: false,
