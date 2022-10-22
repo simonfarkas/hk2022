@@ -51,7 +51,7 @@ export const Home = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputName && inputDate)) {
+    if (inputName && inputDate) {
       const newReminder = {
         id: new Date().getTime(),
         name: inputName,
@@ -141,6 +141,11 @@ export const Home = () => {
           </Button>
         </form>
       </Modal>
+      {sortedReminders.length === 0 && (
+        <Text color="white" textAlign="center">
+          Žiadne nové pripomienky
+        </Text>
+      )}
 
       {sortedReminders.map((reminder) => (
         <Reminder
