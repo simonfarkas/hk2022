@@ -45,7 +45,7 @@ export const Login = () => {
               bg="secondary"
               variant="unstyled"
               placeholder="Email"
-              color="white"
+              color="grayMain"
               py={2}
               px={4}
               value={email}
@@ -60,7 +60,7 @@ export const Login = () => {
               bg="secondary"
               variant="unstyled"
               placeholder="Heslo"
-              color="white"
+              color="grayMain"
               py={2}
               px={4}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>

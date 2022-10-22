@@ -22,6 +22,7 @@ import logo from "../assets/logo.svg";
 Modal.setAppElement("#root");
 
 export const Home = () => {
+  // call initArray first, then set empty array for some initial data
   const [reminders, setReminders] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState(false);

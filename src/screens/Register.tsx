@@ -41,7 +41,7 @@ export const Register = () => {
               bg="secondary"
               variant="unstyled"
               placeholder="Meno"
-              color="white"
+              color="grayMain"
               py={2}
               px={4}
               value={name}
@@ -56,7 +56,7 @@ export const Register = () => {
               bg="secondary"
               variant="unstyled"
               placeholder="Email"
-              color="white"
+              color="grayMain"
               py={2}
               px={4}
               value={email}
@@ -71,7 +71,7 @@ export const Register = () => {
               bg="secondary"
               variant="unstyled"
               placeholder="Heslo"
-              color="white"
+              color="grayMain"
               py={2}
               px={4}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
