@@ -2,8 +2,6 @@ const newDate = new Date();
 
 newDate.setHours(0, 0, 0, 0);
 
-console.log("db:" + newDate);
-
 export const initArray = [
   {
     id: 1,

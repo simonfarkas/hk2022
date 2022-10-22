@@ -1,4 +1,4 @@
-export const customStyles = {
+export const modalStyles = {
   content: {
     width: "313px",
     top: "50%",

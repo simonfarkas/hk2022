@@ -3,4 +3,4 @@
 ~~- zmenit hover farbu na kalendari~~
 ~~- zvacsit pismo~~
 - pridat index subory
-- pridat komentyx
+- pridat komenty

@@ -1,9 +1,17 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { Flex, Button, FormControl, Input, Box, Image } from "@chakra-ui/react";
-import logo from "../assets/logo.svg";
-import "@fontsource/lato/latin-ext.css";
-import { BiArrowBack, BiLogIn } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import {
+  Flex,
+  Button,
+  FormControl,
+  Input,
+  Box,
+  Image,
+  Text,
+} from "@chakra-ui/react";
+import { BiArrowBack, BiLogIn } from "react-icons/bi";
+import "@fontsource/lato/latin-ext.css";
+import logo from "../assets/logo.svg";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -80,7 +88,7 @@ export const Register = () => {
             <span>
               <BiLogIn size={24} />
             </span>
-            <span>Registrovať sa</span>
+            <Text fontWeight={300}>Registrovať sa</Text>
           </Button>
         </Flex>
       </form>

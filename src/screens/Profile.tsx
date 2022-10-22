@@ -1,15 +1,12 @@
-import React, { ChangeEvent, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Flex, Image, Text, Box, Input } from "@chakra-ui/react";
-import { useState } from "react";
-import logo from "../assets/logo.svg";
-import { Userbar } from "../components/Userbar";
-import { BiLogOut } from "react-icons/bi";
+import { BiLogOut, BiTrashAlt } from "react-icons/bi";
 import { IoSettingsSharp } from "react-icons/io5";
-import { AiOutlineMinus } from "react-icons/ai";
-import { BsPlus } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { BiTrash } from "react-icons/bi";
-import { requestSharing, sharingWith } from "../types/shared";
+import { Userbar } from "../components";
+import { requestSharing, sharingWith } from "../types";
+import logo from "../assets/logo.svg";
 
 export const Profile = () => {
   const [activeTab, setActiveTab] = useState(2);
@@ -162,7 +159,7 @@ export const Profile = () => {
                       color="green"
                       onClick={() => handleAccept(user.id)}
                     />
-                    <BiTrash
+                    <BiTrashAlt
                       size={24}
                       color="tomato"
                       onClick={() => handleDelete(user.id, "requests")}

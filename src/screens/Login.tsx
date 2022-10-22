@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Flex,
   Button,
@@ -8,10 +9,9 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
-import logo from "../assets/logo.svg";
-import "@fontsource/lato/latin-ext.css";
 import { BiArrowBack, BiLogIn } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import "@fontsource/lato/latin-ext.css";
+import logo from "../assets/logo.svg";
 
 const rightEmail = "simonfarkas@email.com";
 const rightPassword = "password";
@@ -79,7 +79,7 @@ export const Login = () => {
             <span>
               <BiLogIn size={24} />
             </span>
-            <span>Prihlásiť sa</span>
+            <Text fontWeight={300}>Prihlásiť sa</Text>
           </Button>
         </Flex>
       </form>

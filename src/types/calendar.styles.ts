@@ -1,4 +1,4 @@
-export const css = `
+export const calendarStyles = `
     .my-selected:not([disabled]) {
         font-weight: bold;
         background-color: tomato;

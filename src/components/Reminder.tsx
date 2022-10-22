@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -7,14 +8,12 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { BsCalendar, BsPlus, BsThreeDotsVertical } from "react-icons/bs";
-import { BiTrash } from "react-icons/bi";
-import React, { useState } from "react";
 import Modal from "react-modal";
+import { BsCalendarEvent, BsPlus, BsThreeDotsVertical } from "react-icons/bs";
+import { BiTrashAlt } from "react-icons/bi";
 import { AiOutlineMinus } from "react-icons/ai";
-import { customStyles } from "../types/modal.styles";
-import { Props } from "../interfaces/IReminder";
-import { IAuthor } from "../interfaces/IAuthor";
+import { modalStyles } from "../types";
+import { Props, IAuthor } from "../interfaces";
 
 export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
   const [isShareModal, setIsShareModal] = useState(false);
@@ -25,7 +24,7 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
         isOpen={isShareModal}
         onAfterOpen={() => setIsShareModal(true)}
         onRequestClose={() => setIsShareModal(false)}
-        style={customStyles}
+        style={modalStyles}
       >
         <form>
           <FormControl marginBottom={5}>
@@ -95,7 +94,7 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
         </Flex>
         <Flex direction="row" align="center" justify="space-between" mt={4}>
           <Flex direction="row" align="center">
-            <BsCalendar />
+            <BsCalendarEvent />
             <Text ml={2}>
               {
                 //@ts-ignore
@@ -104,7 +103,7 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
             </Text>
           </Flex>
           <Flex direction="row" align="center" experimental_spaceX={2}>
-            <BiTrash
+            <BiTrashAlt
               onClick={() => deleteReminder(reminder.id)}
               color="tomato"
               size={18}

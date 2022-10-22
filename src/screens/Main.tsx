@@ -1,9 +1,9 @@
 import React from "react";
-import { Flex, Button, Image } from "@chakra-ui/react";
-import logo from "../assets/logo.svg";
-import "@fontsource/lato/latin-ext.css";
-import { BiLogIn, BiUserPlus } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { Flex, Button, Image, Text } from "@chakra-ui/react";
+import { BiLogIn, BiUserPlus } from "react-icons/bi";
+import "@fontsource/lato/latin-ext.css";
+import logo from "../assets/logo.svg";
 
 export const Main = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export const Main = () => {
     <Flex direction="column" experimental_spaceY={5}>
       <Image mx="auto" src={logo} width={212} height={50} alt="logo" />
       <Button
-        bg="secondary"
+        bg="tomato"
         color="white"
         colorScheme="none"
         experimental_spaceX={2}
@@ -20,10 +20,10 @@ export const Main = () => {
         <span>
           <BiLogIn size={24} />
         </span>
-        <span>Prihlásiť sa</span>
+        <Text fontWeight={300}>Prihlásenie</Text>
       </Button>
       <Button
-        bg="secondary"
+        bg="tomato"
         color="white"
         colorScheme="none"
         experimental_spaceX={2}
@@ -32,7 +32,7 @@ export const Main = () => {
         <span>
           <BiUserPlus size={24} />
         </span>
-        <span>Registrácia</span>
+        <Text fontWeight={300}>Registrácia</Text>
       </Button>
     </Flex>
   );

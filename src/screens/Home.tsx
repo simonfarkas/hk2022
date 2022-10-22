@@ -1,5 +1,4 @@
-import React, { FormEvent, useState } from "react";
-import { Userbar } from "../components/Userbar";
+import React, { FormEvent, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -11,14 +10,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { BsPlus } from "react-icons/bs";
-import { Reminder } from "../components/Reminder";
+import "react-day-picker/dist/style.css";
 import Modal from "react-modal";
-import { format } from "date-fns";
 import sk from "date-fns/locale/sk";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
-import { initArray } from "../types/initArray";
-import { customStyles } from "../types/modal.styles";
+import { format } from "date-fns";
+import { Reminder, Userbar } from "../components";
+import { initArray, modalStyles } from "../types";
 import logo from "../assets/logo.svg";
 
 Modal.setAppElement("#root");
@@ -68,7 +66,6 @@ export const Home = () => {
     setIsFormOpen(false);
     setInputName("");
     setInputDate(undefined);
-    console.log(newReminder);
   };
 
   const sortedReminders = [...reminders].sort((a, b) => b.id - a.id);
@@ -86,7 +83,7 @@ export const Home = () => {
         isOpen={isFormOpen}
         onAfterOpen={() => setIsFormOpen(true)}
         onRequestClose={() => setIsFormOpen(false)}
-        style={customStyles}
+        style={modalStyles}
       >
         <form onSubmit={handleSubmit}>
           <FormControl marginBottom={5}>
