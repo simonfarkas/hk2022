@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Userbar } from "../components/Userbar";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { BsCalendar, BsPlus } from "react-icons/bs";
-import { Remind } from "../components/Remind";
+import { Reminder } from "../components/Reminder";
 
 const initArray = [
   {
@@ -74,35 +74,35 @@ const initArray = [
 ];
 
 export const Home = () => {
-  const [reminds, setReminds] = useState<any[]>(initArray);
+  const [reminders, setReminders] = useState<any[]>(initArray);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleDelete = (id: number) => {
-    const newArray = reminds.filter((remind) => remind.id !== id);
-    setReminds(newArray);
+    const newArray = reminders.filter((reminder) => reminder.id !== id);
+    setReminders(newArray);
   };
 
   const handleMarkDone = (id: number) => {
-    const newArray = [...reminds];
-    const updated = newArray.find((remind) => remind.id === id);
+    const newArray = [...reminders];
+    const updated = newArray.find((reminder) => reminder.id === id);
     updated.isDone = true;
-    setReminds(newArray);
+    setReminders(newArray);
   };
 
   return (
     <Flex direction="column">
       {activeTab === 0 &&
-        reminds.map((remind) => (
-          <Remind
-            key={remind.id}
-            id={remind.id}
-            name={remind.name}
-            date={remind.date}
-            author={remind.author}
-            isDone={remind.isDone}
-            deleteRemind={() => handleDelete(remind.id)}
-            markDone={() => handleMarkDone(remind.id)}
+        reminders.map((reminder) => (
+          <Reminder
+            key={reminder.id}
+            id={reminder.id}
+            name={reminder.name}
+            date={reminder.date}
+            author={reminder.author}
+            isDone={reminder.isDone}
+            deleteReminder={() => handleDelete(reminder.id)}
+            markDone={() => handleMarkDone(reminder.id)}
           />
         ))}
       <Box mb={32}>

@@ -8,25 +8,25 @@ interface Author {
   profile_pic: string;
 }
 
-interface Remind {
+interface Reminder {
   id: number;
   name: string;
   date: string;
   isDone: boolean;
   author: Author;
-  deleteRemind: (id: number) => void;
+  deleteReminder: (id: number) => void;
   markDone: (id: number) => void;
 }
 
-export const Remind = ({
+export const Reminder = ({
   id,
   name,
   date,
   isDone,
   author,
-  deleteRemind,
+  deleteReminder,
   markDone,
-}: Remind) => {
+}: Reminder) => {
   return (
     <Box bg="secondary" color="white" p={4} my={1} borderRadius="lg">
       <Flex direction="column">
@@ -49,7 +49,7 @@ export const Remind = ({
             <Text ml={2}>{date}</Text>
           </Flex>
           <Flex direction="row" align="center" experimental_spaceX={2}>
-            <BiTrash onClick={() => deleteRemind(id)} />
+            <BiTrash onClick={() => deleteReminder(id)} />
             {!isDone && (
               <Button
                 bg="white"
