@@ -5,7 +5,6 @@ import { Login } from "./screens/Login";
 import { Register } from "./screens/Register";
 import { Main } from "./screens/Main";
 import { Home } from "./screens/Home";
-import { Userbar } from "./components/Userbar";
 
 const router = createBrowserRouter([
   {

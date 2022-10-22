@@ -1,8 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Userbar } from "../components/Userbar";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import { BsCalendar, BsPlus } from "react-icons/bs";
+import { Box, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { BsPlus } from "react-icons/bs";
 import { Reminder } from "../components/Reminder";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
+
+const customStyles = {
+  content: {
+    width: "313px",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    borderRadius: "10px",
+  },
+  overlay: {
+    background: "rgba(0,0,0,0.75)",
+  },
+};
 
 const initArray = [
   {
@@ -92,6 +111,22 @@ export const Home = () => {
 
   return (
     <Flex direction="column">
+      <Modal
+        isOpen={isFormOpen}
+        onAfterOpen={() => setIsFormOpen(true)}
+        onRequestClose={() => setIsFormOpen(false)}
+        style={customStyles}
+      >
+        <form>
+          <FormControl marginBottom={5}>
+            <FormLabel>Nazov</FormLabel>
+            <Input placeholder="test" required variant="flushed" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Datum</FormLabel>
+          </FormControl>
+        </form>
+      </Modal>
       {activeTab === 0 &&
         reminders.map((reminder) => (
           <Reminder
