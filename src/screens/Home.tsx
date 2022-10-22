@@ -79,6 +79,7 @@ export const Home = () => {
     }
   };
 
+  // sort reminders by highest id -> the latest on top
   const sortedReminders = [...reminders].sort((a, b) => b.id - a.id);
 
   let footer = <Text>Vyberte deň</Text>;

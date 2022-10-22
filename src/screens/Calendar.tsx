@@ -21,6 +21,7 @@ export const Calendar = () => {
     localStorage.setItem("reminders", JSON.stringify(reminders));
   }, [reminders]);
 
+  // set hours for date to 00:00:00 for better date handling
   date.setHours(0, 0, 0, 0);
 
   const handleDelete = (id: number) => {
@@ -35,6 +36,7 @@ export const Calendar = () => {
     setReminders(newArray);
   };
 
+  // sort reminders by highest id -> the latest on top
   const sortedReminders = [...reminders].sort((a, b) => b.id - a.id);
 
   return (
