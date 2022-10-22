@@ -20,7 +20,7 @@ export const Calendar = () => {
   const handleMarkDone = (id: number) => {
     const newArray = [...reminders];
     const updated = newArray.find((reminder) => reminder.id === id);
-    updated.isDone = true;
+    updated!.isDone = true;
     setReminders(newArray);
   };
 
@@ -35,6 +35,7 @@ export const Calendar = () => {
         <DayPicker
           mode="single"
           selected={date}
+          //@ts-ignore
           onSelect={setDate}
           locale={sk}
         />
@@ -46,6 +47,7 @@ export const Calendar = () => {
           .map((reminder) => (
             <Reminder
               key={reminder.id}
+              //@ts-ignore
               reminder={reminder}
               deleteReminder={() => handleDelete(reminder.id)}
               markDone={() => handleMarkDone(reminder.id)}

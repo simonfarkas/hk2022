@@ -96,7 +96,12 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
         <Flex direction="row" align="center" justify="space-between" mt={4}>
           <Flex direction="row" align="center">
             <BsCalendar />
-            <Text ml={2}>{reminder.date.toLocaleDateString()}</Text>
+            <Text ml={2}>
+              {
+                //@ts-ignore
+                reminder.date.toLocaleDateString()
+              }
+            </Text>
           </Flex>
           <Flex direction="row" align="center" experimental_spaceX={2}>
             <BiTrash onClick={() => deleteReminder(reminder.id)} />
