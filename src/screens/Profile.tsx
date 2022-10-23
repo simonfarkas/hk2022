@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Image, Text, Input } from "@chakra-ui/react";
+import { Flex, Image, Text, Input, Box } from "@chakra-ui/react";
 import { BiLogOut, BiTrashAlt } from "react-icons/bi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
@@ -90,6 +90,7 @@ export const Profile = () => {
         <AnimatePresence>
           {sharing.map((user) => (
             <MotionFlex
+              key={user.id}
               direction="column"
               bg="secondary"
               color="white"
@@ -152,44 +153,39 @@ export const Profile = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0, animationDuration: 500 }}
             >
-              <Flex
-                direction="row"
-                align="center"
-                justify="space-between"
-                bg="secondary"
-                w="100%"
-              >
-                {requests.map((user) => (
-                  <>
-                    <Flex align="center" key={user.id}>
-                      <Image
-                        src={user.profile_pic}
-                        width={8}
-                        height={8}
-                        alt="profile_pic"
-                        borderRadius="50%"
-                      />
-                      <Text ml={2}>{user.name}</Text>
-                    </Flex>
-                    <Flex
-                      direction="row"
-                      align="center"
-                      experimental_spaceX={4}
-                    >
-                      <TiTick
-                        size={24}
-                        color="green"
-                        onClick={() => handleAccept(user.id)}
-                      />
-                      <BiTrashAlt
-                        size={24}
-                        color="tomato"
-                        onClick={() => handleDelete(user.id, "requests")}
-                      />
-                    </Flex>
-                  </>
-                ))}
-              </Flex>
+              {requests.map((user) => (
+                <Flex
+                  direction="row"
+                  align="center"
+                  justify="space-between"
+                  bg="secondary"
+                  w="100%"
+                  key={user.id}
+                >
+                  <Flex align="center">
+                    <Image
+                      src={user.profile_pic}
+                      width={8}
+                      height={8}
+                      alt="profile_pic"
+                      borderRadius="50%"
+                    />
+                    <Text ml={2}>{user.name}</Text>
+                  </Flex>
+                  <Flex direction="row" align="center" experimental_spaceX={4}>
+                    <TiTick
+                      size={24}
+                      color="green"
+                      onClick={() => handleAccept(user.id)}
+                    />
+                    <BiTrashAlt
+                      size={24}
+                      color="tomato"
+                      onClick={() => handleDelete(user.id, "requests")}
+                    />
+                  </Flex>
+                </Flex>
+              ))}
             </MotionFlex>
           )}
         </AnimatePresence>
