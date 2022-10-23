@@ -9,8 +9,8 @@ import { calendarStyles, initArray } from "../types";
 import { useTime } from "../hooks";
 
 export const Calendar = () => {
-  const [activeTab, setActiveTab] = useState(1);
-  const [reminders, setReminders] = useState([]);
+  const [activeTab, setActiveTab] = useState<number>(1);
+  const [reminders, setReminders] = useState<any[]>([]);
   const [date, setDate] = useState<Date>(new Date());
 
   useEffect(() => {

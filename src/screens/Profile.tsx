@@ -9,9 +9,9 @@ import { requestSharing, sharingWith } from "../types";
 import logo from "../assets/logo.svg";
 
 export const Profile = () => {
-  const [activeTab, setActiveTab] = useState(2);
-  const [sharing, setSharing] = useState(sharingWith);
-  const [requests, setRequests] = useState(requestSharing);
+  const [activeTab, setActiveTab] = useState<number>(2);
+  const [sharing, setSharing] = useState<any[]>(sharingWith);
+  const [requests, setRequests] = useState<any[]>(requestSharing);
 
   const handleAccept = (id: number) => {
     const request = requests.find((r) => r.id === id);
@@ -82,6 +82,11 @@ export const Profile = () => {
           my={4}
         />
         <Text fontSize={20}>Zdieľané s:</Text>
+        {sharing.length === 0 ? (
+          <Text mx="auto" my={2} color="grayMain">
+            Nezdieľaté s nikým
+          </Text>
+        ) : null}
         <AnimatePresence>
           {sharing.map((user) => (
             <MotionFlex
@@ -94,7 +99,7 @@ export const Profile = () => {
               w="100%"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0, animationDuration: 2000 }}
+              exit={{ opacity: 0, scale: 0, animationDuration: 500 }}
             >
               <Flex
                 direction="row"
@@ -127,6 +132,11 @@ export const Profile = () => {
         <Text fontSize={20} my={4}>
           Žiadosti:
         </Text>
+        {requests.length === 0 ? (
+          <Text mx="auto" my={2} color="grayMain">
+            Nemáte nové žiadosti
+          </Text>
+        ) : null}
         <AnimatePresence>
           {requests.length > 0 && (
             <MotionFlex
@@ -140,6 +150,7 @@ export const Profile = () => {
               w="100%"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0, animationDuration: 500 }}
             >
               <Flex
                 direction="row"

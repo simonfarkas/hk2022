@@ -18,7 +18,7 @@ import { Props, IAuthor } from "../interfaces";
 import { useTime } from "../hooks";
 
 export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
-  const [isShareModal, setIsShareModal] = useState(false);
+  const [isShareModal, setIsShareModal] = useState<boolean>(false);
 
   const MotionBox = motion(Box);
 
@@ -31,8 +31,7 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
       borderRadius="lg"
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.05 }}
-      exit={{ opacity: 0, scale: 0, animationDuration: 2000 }}
+      exit={{ opacity: 0, scale: 0, animationDuration: 500 }}
     >
       <Modal
         isOpen={isShareModal}

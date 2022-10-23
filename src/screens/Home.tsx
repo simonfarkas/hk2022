@@ -25,8 +25,8 @@ Modal.setAppElement("#root");
 export const Home = () => {
   const [reminders, setReminders] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<number>(0);
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [inputName, setInputName] = useState("");
+  const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
+  const [inputName, setInputName] = useState<string>("");
   const [inputDate, setInputDate] = useState<Date>();
 
   useEffect(() => {
