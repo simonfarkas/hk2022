@@ -1,4 +1,8 @@
 export const calendarStyles = `
+    .rdp {
+        margin:0;
+     }
+        
     .my-selected:not([disabled]) {
         font-weight: bold;
         background-color: tomato;

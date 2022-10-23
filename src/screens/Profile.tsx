@@ -131,6 +131,7 @@ export const Profile = () => {
                     size={24}
                     color="tomato"
                     onClick={() => handleDelete(user.id, "sharing")}
+                    cursor="pointer"
                   />
                 </Flex>
               </Flex>
