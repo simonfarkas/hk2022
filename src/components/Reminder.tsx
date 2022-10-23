@@ -29,9 +29,10 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
       p={4}
       my={1}
       borderRadius="lg"
-      initial={{ opacity: 0, scale: 0 }}
+      initial={false}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0, animationDuration: 500 }}
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, scale: 0 }}
     >
       <Modal
         isOpen={isShareModal}
@@ -75,11 +76,12 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
         <Flex direction="row" align="center" justify="space-between">
           <Text
             maxW="md"
+            fontSize={20}
             textDecoration={reminder.isDone ? "line-through" : "none"}
           >
             {reminder.name}
           </Text>
-          <Text fontSize={12}>
+          <Text fontSize={14}>
             {reminder.author.name === "John Smith" && reminder.isShared
               ? "Zdieľané"
               : ""}
@@ -115,6 +117,7 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
               onClick={() => deleteReminder(reminder.id)}
               color="tomato"
               size={18}
+              cursor="pointer"
             />
             {!reminder.isDone && (
               <Button

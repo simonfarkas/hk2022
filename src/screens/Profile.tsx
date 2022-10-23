@@ -98,8 +98,9 @@ export const Profile = () => {
               my={1}
               borderRadius="lg"
               w="100%"
-              initial={{ opacity: 0, scale: 0 }}
+              inital={false}
               animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
               exit={{ opacity: 0, scale: 0, animationDuration: 500 }}
             >
               <Flex
@@ -149,7 +150,7 @@ export const Profile = () => {
               my={1}
               borderRadius="lg"
               w="100%"
-              initial={{ opacity: 0, scale: 0 }}
+              inital={false}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0, animationDuration: 500 }}
             >

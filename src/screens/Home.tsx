@@ -23,6 +23,7 @@ import logo from "../assets/logo.svg";
 Modal.setAppElement("#root");
 
 export const Home = () => {
+  // set initArray first, then change it to empty array for some initial data
   const [reminders, setReminders] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
@@ -37,13 +38,6 @@ export const Home = () => {
   useEffect(() => {
     localStorage.setItem("reminders", JSON.stringify(reminders));
   }, [reminders]);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "reminders",
-      JSON.stringify(reminders.length === 0 ? initArray : reminders)
-    );
-  }, []);
 
   const handleDelete = (id: number) => {
     const newArray = reminders.filter((reminder) => reminder.id !== id);
@@ -168,7 +162,8 @@ export const Home = () => {
 
       <Box mb={32}>
         <Box
-          bg="white"
+          bg="tomato"
+          color="white"
           p={2}
           position="fixed"
           borderRadius="50%"
@@ -177,7 +172,7 @@ export const Home = () => {
           transform="translateX(-50%)"
           onClick={() => setIsFormOpen(true)}
         >
-          <BsPlus />
+          <BsPlus size={24} cursor="pointer" />
         </Box>
         <Userbar activeTab={activeTab} setActiveTab={setActiveTab} />
       </Box>

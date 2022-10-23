@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import sk from "date-fns/locale/sk";
 import logo from "../assets/logo.svg";
 import { Reminder, Userbar } from "../components";
-import { calendarStyles, initArray } from "../types";
+import { calendarStyles } from "../types";
 import { useTime } from "../hooks";
 
 export const Calendar = () => {

@@ -65,7 +65,7 @@ export const initArray = [
   },
   {
     id: 4,
-    name: "Lorem Ipsum",
+    name: "AETečko",
     date: newDate,
     isDone: false,
     isShared: false,
@@ -85,7 +85,7 @@ export const initArray = [
   },
   {
     id: 5,
-    name: "Lorem Ipsum",
+    name: "Kúpiť kapra",
     date: new Date("2022-12-23T22:00:00.000Z"),
     isDone: false,
     isShared: true,
@@ -125,7 +125,7 @@ export const initArray = [
   },
   {
     id: 7,
-    name: "Povysavat",
+    name: "Povysávať auto",
     date: new Date("2022-10-29T22:00:00.000Z"),
     isDone: false,
     isShared: false,
