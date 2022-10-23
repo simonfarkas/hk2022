@@ -35,11 +35,15 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
+    localStorage.setItem("reminders", JSON.stringify(reminders));
+  }, [reminders]);
+
+  useEffect(() => {
     localStorage.setItem(
       "reminders",
       JSON.stringify(reminders.length === 0 ? initArray : reminders)
     );
-  }, [reminders]);
+  }, []);
 
   const handleDelete = (id: number) => {
     const newArray = reminders.filter((reminder) => reminder.id !== id);
