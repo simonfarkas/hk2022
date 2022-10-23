@@ -15,7 +15,7 @@ const InactiveTabStyles = {
 
 interface Props {
   activeTab: number;
-  setActiveTab: any;
+  setActiveTab: (i: number) => void;
 }
 
 export const Userbar = ({ activeTab, setActiveTab }: Props) => {

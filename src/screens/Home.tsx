@@ -15,6 +15,7 @@ import Modal from "react-modal";
 import sk from "date-fns/locale/sk";
 import { DayPicker } from "react-day-picker";
 import { format } from "date-fns";
+import { AnimatePresence } from "framer-motion";
 import { Reminder, Userbar } from "../components";
 import { calendarStyles, initArray, modalStyles } from "../types";
 import logo from "../assets/logo.svg";
@@ -22,7 +23,6 @@ import logo from "../assets/logo.svg";
 Modal.setAppElement("#root");
 
 export const Home = () => {
-  // call initArray first, then set empty array for some initial data
   const [reminders, setReminders] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -35,7 +35,10 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("reminders", JSON.stringify(reminders));
+    localStorage.setItem(
+      "reminders",
+      JSON.stringify(reminders.length === 0 ? initArray : reminders)
+    );
   }, [reminders]);
 
   const handleDelete = (id: number) => {
@@ -148,15 +151,17 @@ export const Home = () => {
           Žiadne nové pripomienky
         </Text>
       )}
+      <AnimatePresence>
+        {sortedReminders.map((reminder) => (
+          <Reminder
+            key={reminder.id}
+            reminder={reminder}
+            deleteReminder={() => handleDelete(reminder.id)}
+            markDone={() => handleMarkDone(reminder.id)}
+          />
+        ))}
+      </AnimatePresence>
 
-      {sortedReminders.map((reminder) => (
-        <Reminder
-          key={reminder.id}
-          reminder={reminder}
-          deleteReminder={() => handleDelete(reminder.id)}
-          markDone={() => handleMarkDone(reminder.id)}
-        />
-      ))}
       <Box mb={32}>
         <Box
           bg="white"

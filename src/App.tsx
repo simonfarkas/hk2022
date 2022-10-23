@@ -1,12 +1,7 @@
 import React from "react";
 import { Box, Container } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Login } from "./screens/Login";
-import { Register } from "./screens/Register";
-import { Main } from "./screens/Main";
-import { Home } from "./screens/Home";
-import { Calendar } from "./screens/Calendar";
-import { Profile } from "./screens/Profile";
+import { Login, Register, Main, Home, Calendar, Profile } from "./screens";
 
 const router = createBrowserRouter([
   {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Image } from "@chakra-ui/react";
 import { DayPicker } from "react-day-picker";
+import { AnimatePresence } from "framer-motion";
 import sk from "date-fns/locale/sk";
 import logo from "../assets/logo.svg";
 import { Reminder, Userbar } from "../components";
@@ -9,7 +10,7 @@ import { useTime } from "../hooks";
 
 export const Calendar = () => {
   const [activeTab, setActiveTab] = useState(1);
-  const [reminders, setReminders] = useState(initArray);
+  const [reminders, setReminders] = useState([]);
   const [date, setDate] = useState<Date>(new Date());
 
   useEffect(() => {
@@ -56,18 +57,20 @@ export const Calendar = () => {
             today: "my-today",
           }}
         />
-        {sortedReminders
-          //@ts-ignore
-          .filter((reminder) => useTime(reminder.date) === useTime(date))
-          .map((reminder) => (
-            <Reminder
-              key={reminder.id}
-              //@ts-ignore
-              reminder={reminder}
-              deleteReminder={() => handleDelete(reminder.id)}
-              markDone={() => handleMarkDone(reminder.id)}
-            />
-          ))}
+        <AnimatePresence>
+          {sortedReminders
+            //@ts-ignore
+            .filter((reminder) => useTime(reminder.date) === useTime(date))
+            .map((reminder) => (
+              <Reminder
+                key={reminder.id}
+                //@ts-ignore
+                reminder={reminder}
+                deleteReminder={() => handleDelete(reminder.id)}
+                markDone={() => handleMarkDone(reminder.id)}
+              />
+            ))}
+        </AnimatePresence>
       </Box>
       <Userbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </Box>

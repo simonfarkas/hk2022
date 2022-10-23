@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Flex, Image, Text, Box, Input } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Flex, Image, Text, Input } from "@chakra-ui/react";
 import { BiLogOut, BiTrashAlt } from "react-icons/bi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
+import { motion, AnimatePresence } from "framer-motion";
 import { Userbar } from "../components";
 import { requestSharing, sharingWith } from "../types";
 import logo from "../assets/logo.svg";
@@ -37,10 +38,7 @@ export const Profile = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(sharing);
-    console.log(requests);
-  }, [sharing, requests]);
+  const MotionFlex = motion(Flex);
 
   return (
     <Flex direction="column">
@@ -84,91 +82,106 @@ export const Profile = () => {
           my={4}
         />
         <Text fontSize={20}>Zdieľané s:</Text>
-
-        {sharing.map((user) => (
-          <Flex
-            direction="column"
-            bg="secondary"
-            color="white"
-            p={4}
-            my={1}
-            borderRadius="lg"
-            w="100%"
-          >
-            <Flex
-              direction="row"
-              align="center"
-              justify="space-between"
+        <AnimatePresence>
+          {sharing.map((user) => (
+            <MotionFlex
+              direction="column"
               bg="secondary"
+              color="white"
+              p={4}
+              my={1}
+              borderRadius="lg"
+              w="100%"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0, animationDuration: 2000 }}
             >
-              <Flex align="center" key={user.id}>
-                <Image
-                  src={user.profile_pic}
-                  width={8}
-                  height={8}
-                  alt="profile_pic"
-                  borderRadius="50%"
-                />
-                <Text ml={2}>{user.name}</Text>
+              <Flex
+                direction="row"
+                align="center"
+                justify="space-between"
+                bg="secondary"
+              >
+                <Flex align="center" key={user.id}>
+                  <Image
+                    src={user.profile_pic}
+                    width={8}
+                    height={8}
+                    alt="profile_pic"
+                    borderRadius="50%"
+                  />
+                  <Text ml={2}>{user.name}</Text>
+                </Flex>
+                <Flex direction="row" align="center" experimental_spaceX={4}>
+                  <BiTrashAlt
+                    size={24}
+                    color="tomato"
+                    onClick={() => handleDelete(user.id, "sharing")}
+                  />
+                </Flex>
               </Flex>
-              <Flex direction="row" align="center" experimental_spaceX={4}>
-                <BiTrashAlt
-                  size={24}
-                  color="tomato"
-                  onClick={() => handleDelete(user.id, "sharing")}
-                />
-              </Flex>
-            </Flex>
-          </Flex>
-        ))}
+            </MotionFlex>
+          ))}
+        </AnimatePresence>
 
         <Text fontSize={20} my={4}>
           Žiadosti:
         </Text>
-        {requests.length > 0 && (
-          <Box
-            bg="secondary"
-            color="white"
-            p={4}
-            my={1}
-            borderRadius="lg"
-            w="100%"
-          >
-            <Flex
+        <AnimatePresence>
+          {requests.length > 0 && (
+            <MotionFlex
               direction="row"
               align="center"
-              justify="space-between"
               bg="secondary"
+              color="white"
+              p={4}
+              my={1}
+              borderRadius="lg"
+              w="100%"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
             >
-              {requests.map((user) => (
-                <>
-                  <Flex align="center" key={user.id}>
-                    <Image
-                      src={user.profile_pic}
-                      width={8}
-                      height={8}
-                      alt="profile_pic"
-                      borderRadius="50%"
-                    />
-                    <Text ml={2}>{user.name}</Text>
-                  </Flex>
-                  <Flex direction="row" align="center" experimental_spaceX={4}>
-                    <TiTick
-                      size={24}
-                      color="green"
-                      onClick={() => handleAccept(user.id)}
-                    />
-                    <BiTrashAlt
-                      size={24}
-                      color="tomato"
-                      onClick={() => handleDelete(user.id, "requests")}
-                    />
-                  </Flex>
-                </>
-              ))}
-            </Flex>
-          </Box>
-        )}
+              <Flex
+                direction="row"
+                align="center"
+                justify="space-between"
+                bg="secondary"
+                w="100%"
+              >
+                {requests.map((user) => (
+                  <>
+                    <Flex align="center" key={user.id}>
+                      <Image
+                        src={user.profile_pic}
+                        width={8}
+                        height={8}
+                        alt="profile_pic"
+                        borderRadius="50%"
+                      />
+                      <Text ml={2}>{user.name}</Text>
+                    </Flex>
+                    <Flex
+                      direction="row"
+                      align="center"
+                      experimental_spaceX={4}
+                    >
+                      <TiTick
+                        size={24}
+                        color="green"
+                        onClick={() => handleAccept(user.id)}
+                      />
+                      <BiTrashAlt
+                        size={24}
+                        color="tomato"
+                        onClick={() => handleDelete(user.id, "requests")}
+                      />
+                    </Flex>
+                  </>
+                ))}
+              </Flex>
+            </MotionFlex>
+          )}
+        </AnimatePresence>
       </Flex>
 
       <Userbar activeTab={activeTab} setActiveTab={setActiveTab} />

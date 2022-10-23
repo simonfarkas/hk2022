@@ -12,6 +12,7 @@ import Modal from "react-modal";
 import { BsCalendarEvent, BsPlus, BsThreeDotsVertical } from "react-icons/bs";
 import { BiTrashAlt } from "react-icons/bi";
 import { AiOutlineMinus } from "react-icons/ai";
+import { motion } from "framer-motion";
 import { modalStyles } from "../types";
 import { Props, IAuthor } from "../interfaces";
 import { useTime } from "../hooks";
@@ -19,8 +20,20 @@ import { useTime } from "../hooks";
 export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
   const [isShareModal, setIsShareModal] = useState(false);
 
+  const MotionBox = motion(Box);
+
   return (
-    <Box bg="secondary" color="white" p={4} my={1} borderRadius="lg">
+    <MotionBox
+      bg="secondary"
+      color="white"
+      p={4}
+      my={1}
+      borderRadius="lg"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.05 }}
+      exit={{ opacity: 0, scale: 0, animationDuration: 2000 }}
+    >
       <Modal
         isOpen={isShareModal}
         onAfterOpen={() => setIsShareModal(true)}
@@ -123,6 +136,6 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
           </Flex>
         </Flex>
       </Flex>
-    </Box>
+    </MotionBox>
   );
 };
