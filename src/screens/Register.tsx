@@ -28,7 +28,7 @@ export const Register = () => {
   };
 
   return (
-    <Flex direction="column" experimental_spaceY={5}>
+    <Flex direction="column" pt={32} experimental_spaceY={5}>
       <Box cursor="pointer">
         <BiArrowBack color="white" size={24} onClick={() => navigate("/")} />
       </Box>

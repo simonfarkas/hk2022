@@ -63,9 +63,9 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
                   <Text ml={2}>{user.name}</Text>
                 </Flex>
                 {user.isSharing ? (
-                  <AiOutlineMinus size={24} />
+                  <AiOutlineMinus size={24} cursor="pointer" />
                 ) : (
-                  <BsPlus size={24} />
+                  <BsPlus size={24} cursor="pointer" />
                 )}
               </Flex>
             ))}
@@ -90,6 +90,7 @@ export const Reminder = ({ reminder, deleteReminder, markDone }: Props) => {
                 color="white"
                 size="12"
                 onClick={() => setIsShareModal(true)}
+                cursor="pointer"
               />
             )}
           </Text>

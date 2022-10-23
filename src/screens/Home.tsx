@@ -24,6 +24,7 @@ Modal.setAppElement("#root");
 
 export const Home = () => {
   // set initArray first, then change it to empty array for some initial data
+  // if data disappear on refresh, remove local storage reminders variable
   const [reminders, setReminders] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
@@ -160,7 +161,7 @@ export const Home = () => {
         ))}
       </AnimatePresence>
 
-      <Box mb={32}>
+      <Box>
         <Box
           bg="tomato"
           color="white"

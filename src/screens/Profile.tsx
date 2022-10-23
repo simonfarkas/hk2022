@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Flex, Image, Text, Input, Box } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { Flex, Image, Text, Input } from "@chakra-ui/react";
 import { BiLogOut, BiTrashAlt } from "react-icons/bi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
@@ -12,6 +13,8 @@ export const Profile = () => {
   const [activeTab, setActiveTab] = useState<number>(2);
   const [sharing, setSharing] = useState<any[]>(sharingWith);
   const [requests, setRequests] = useState<any[]>(requestSharing);
+
+  const navigate = useNavigate();
 
   const handleAccept = (id: number) => {
     const request = requests.find((r) => r.id === id);
@@ -63,8 +66,12 @@ export const Profile = () => {
             <Text fontSize={24}>Simon Farkas</Text>
             <Text fontSize={16}>simonfarkas@email.com</Text>
             <Flex direction="row" align="center" experimental_spaceX={2} mt={2}>
-              <BiLogOut size={24} />
-              <IoSettingsSharp size={24} />
+              <BiLogOut
+                size={24}
+                onClick={() => navigate("/")}
+                cursor="pointer"
+              />
+              <IoSettingsSharp size={24} cursor="pointer" />
             </Flex>
           </Flex>
         </Flex>
@@ -178,11 +185,13 @@ export const Profile = () => {
                       size={24}
                       color="green"
                       onClick={() => handleAccept(user.id)}
+                      cursor="pointer"
                     />
                     <BiTrashAlt
                       size={24}
                       color="tomato"
                       onClick={() => handleDelete(user.id, "requests")}
+                      cursor="pointer"
                     />
                   </Flex>
                 </Flex>

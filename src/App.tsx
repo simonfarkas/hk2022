@@ -32,7 +32,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Box bg="main" maxW="480px" minH="100vh" mx="auto">
+    <Box bg="main" maxW="480px" minH="100vh" mx="auto" pb={32}>
       <Container
         h="100%"
         maxW="320px"

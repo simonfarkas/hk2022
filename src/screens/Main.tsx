@@ -8,7 +8,7 @@ import logo from "../assets/logo.svg";
 export const Main = () => {
   const navigate = useNavigate();
   return (
-    <Flex direction="column" experimental_spaceY={5}>
+    <Flex direction="column" pt={32} experimental_spaceY={5}>
       <Image mx="auto" src={logo} width={212} height={50} alt="logo" />
       <Button
         bg="tomato"
